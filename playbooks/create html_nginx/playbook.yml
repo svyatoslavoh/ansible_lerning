@@ -1,0 +1,44 @@
+- hosts: webservers
+
+  tasks:
+    - name: install nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: yes
+      tags: nginx
+      become: yes
+
+    - name: Create a directory if it does not exist
+      ansible.builtin.file:
+        path: /usr/share/nginx/html/
+        state: directory
+      become: yes
+
+    - name: Copy file html
+      ansible.builtin.copy:
+        src: /opt/ansible_lerning/index.html
+        dest: /usr/share/nginx/html/index.html 
+      become: yes
+
+    - name: Copy file nginx.conf
+      ansible.builtin.copy:
+        src: /opt/ansible_lerning/nginx.conf
+        dest: /etc/nginx/nginx.conf
+      notify:
+        - Restart nginx
+      become: yes
+
+    - name: Remove file nginx.conf
+      ansible.builtin.file:
+        path: /etc/nginx/nginx.conf
+        state: absent
+      tags: rmconf
+      become: yes
+
+  handlers:
+    - name: Restart nginx
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded
+      become: yes
