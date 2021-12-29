@@ -6,5 +6,11 @@
         name: git
         state: present
         update_cache: yes
+      tags: git
       become: yes
 
+    - name: Update and upgrade apt packages
+      become: yes
+      apt:
+        upgrade: yes
+        update_cache: yes
