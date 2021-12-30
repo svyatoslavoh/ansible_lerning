@@ -1,0 +1,2 @@
+root_dir: /opt/ansible_lerning/
+nginx_port: 80
