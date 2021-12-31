@@ -29,13 +29,6 @@
         - Restart nginx
       become: yes
 
-    - name: Remove file nginx.conf
-      ansible.builtin.file:
-        path: /etc/nginx/nginx.conf
-        state: absent
-      tags: rmconf
-      become: yes
-
   handlers:
     - name: Restart nginx
       ansible.builtin.service:

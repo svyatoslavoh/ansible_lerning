@@ -1,2 +1,11 @@
 root_dir: /opt/ansible_lerning/
 nginx_port: 80
+users:
+- name: jaime
+  group: admin
+
+- name: sansa
+  group: admin
+
+- name: robert
+  group: admin

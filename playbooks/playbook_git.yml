@@ -14,3 +14,12 @@
       apt:
         upgrade: yes
         update_cache: yes
+
+    - name: Copy file gitconf
+      ansible.builtin.template:
+        src: "{{root_dir}}/templates/.gitconfig"
+        dest: "/home/{{ item.name }}/.gitconfig"
+      loop:
+        "{{ users }}"
+      tags: users
+      become: yes

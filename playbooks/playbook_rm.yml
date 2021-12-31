@@ -5,4 +5,28 @@
       ansible.builtin.apt:
         name: git
         state: absent
+      tags: git
       become: yes # <---
+
+    - name: remove nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: absent
+      tags: nginx
+      become: yes # <---
+
+    - name: Remove file nginx.conf
+      ansible.builtin.file:
+        path: /etc/nginx/nginx.conf
+        state: absent
+      tags: nginx
+      become: yes
+
+    - name: Remove file gitconf
+      ansible.builtin.file:
+        path: "/home/{{ item.name }}/.gitconfig"
+        state: absent
+      loop:
+        "{{ users }}"
+      tags: git
+      become: yes

@@ -1,0 +1,13 @@
+- hosts: webservers
+
+  tasks:
+    - name: add users
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        state: present
+        groups: "{{ item.group }}"
+      when: ansible_os_family == "Debian"
+      loop:
+        "{{ users }}"
+      tags: users
+      become: yes
