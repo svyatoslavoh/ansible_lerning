@@ -9,11 +9,24 @@
       tags: nginx
       become: yes
 
+    - name: install cowsay
+      ansible.builtin.apt:
+        name: cowsay
+        state: present
+        update_cache: yes
+      tags: cowsay, html
+      become: yes
+
+    - ansible.builtin.shell: cowsay "Hello, from {{ server_name }}!"
+      register: cowsay
+      tags: html
+
     - name: Create a directory if it does not exist
       ansible.builtin.file:
         path: /usr/share/nginx/html/
         state: directory
       become: yes
+      tags: html
 
     - name: Copy file html
       ansible.builtin.template:

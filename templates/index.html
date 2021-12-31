@@ -6,7 +6,10 @@
 </head>
 <body>
   <h1>Hello World!</h1>
-  <h2>{{ str_server.upper() }}!</h2> <!-- Эта строка была приведена в верхний регистр с помощью фильтра -->
-  <small>{{ current_date  }}</small> <!-- Локализованная дата -->
+  <h2>{{ str_server.upper() }}!</h2>
+  <pre><code>
+    {{ cowsay.stdout_lines }}
+  </code></pre>
+  <small>{{ current_date  }}</small> 
 </body>
 </html>
