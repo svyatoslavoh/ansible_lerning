@@ -19,6 +19,7 @@
       ansible.builtin.template:
         src: "{{root_dir}}/templates/index.html"
         dest: /usr/share/nginx/html/index.html 
+      tags: html
       become: yes
 
     - name: Copy file nginx.conf
