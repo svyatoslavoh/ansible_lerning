@@ -1,0 +1,13 @@
+- hosts: webservers
+  tasks:
+    - debug:
+        msg: all
+
+- name: Include a playbook_git
+  import_playbook: playbook_git.yml
+
+- name: Include a playbook_nginx
+  import_playbook: playbook_nginx.yml
+
+- name: Include a playbook_users
+  import_playbook: playbook_users.yml
